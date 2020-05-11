@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="StemWijzerStyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="EditText()">
+<script src="StemWijzerData.js"></script>
+<div class="container" id="MainContainer">
+    <button class="btn-default" onclick="PreviousStatement()">&larr;</button>
+    <div id="testDiv">
+        <div id="StatementDiv">
+            <h2 id="Title"></h2>
+            <h3 id="Statement"></h3>
+        </div>
+        <button onclick="NextStatement('pro')" type="button" class="btn btn-primary">Eens</button>
+        <button onclick="NextStatement('none')" type="button" class="btn btn-primary">Geen van beide</button>
+        <button onclick="NextStatement('contra')" type="button" class="btn btn-primary">Oneens</button>
+        <a onclick="NextStatement()">Sla deze vraag over</a>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Wat vinden de partijen?</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <!-- <div id="Party0"></div>
+                    <div id="Party1"></div>
+                    <div id="Party2"></div>
+                    <div id="Party3"></div>
+                    <div id="Party4"></div>
+                    <div id="Party5"></div>
+                    <div id="Party6"></div>
+                    <div id="Party7"></div>
+                    <div id="Party8"></div>
+                    <div id="Party9"></div>
+                    <div id="Party10"></div>
+                    <div id="Party11"></div>
+                    <div id="Party12"></div>
+                    <div id="Party13"></div>
+                    <div id="Party14"></div>
+                    <div id="Party15"></div>
+                    <div id="Party16"></div>
+                    <div id="Party17"></div>
+                    <div id="Party18"></div>
+                    <div id="Party19"></div>
+                    <div id="Party20"></div>s
+                    <div id="Party21"></div>
+                    <div id="Party22"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="PartyDiv" style="display: none;">
+        <div class="col-sm-4">
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" name="0" value="VVD"></div> <div class="col-sm-11" id="Party0"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="CDA"></div> <div class="col-sm-11" id="Party1"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="PVV"></div> <div class="col-sm-11" id="Party2"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="D66"></div> <div class="col-sm-11" id="Party3"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="GroenLinks"></div> <div class="col-sm-11" id="Party4"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="SP"></div> <div class="col-sm-11" id="Party5"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="PvdA"></div> <div class="col-sm-11" id="Party6"></div> </div> 
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="ChristenUnie"></div> <div class="col-sm-11" id="Party7"></div> </div>
+            <br>
+            <button onclick="GetChosenParty()">get results</button>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Partij voor de Dieren"></div> <div class="col-sm-11" id="Party8"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="SGP"></div> <div class="col-sm-11" id="Party9"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="DENK"></div> <div class="col-sm-11" id="Party10"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Forum voor Democratie"></div> <div class="col-sm-11" id="Party11"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Lokaal in de Kamer"></div> <div class="col-sm-11" id="Party12"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="OndernemersPartij"></div> <div class="col-sm-11" id="Party13"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="VNL"></div> <div class="col-sm-11" id="Party14"></div> </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Nieuwe Wegen"></div> <div class="col-sm-11" id="Party15"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="De Burger Beweging"></div> <div class="col-sm-11" id="Party16"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Piratenpartij"></div> <div class="col-sm-11" id="Party17"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Artikel 1"></div> <div class="col-sm-11" id="Party18"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Libertarische Partij"></div> <div class="col-sm-11" id="Party19"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="50Plus"></div> <div class="col-sm-11" id="Party20"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Vrijzinnige Partij"></div> <div class="col-sm-11" id="Party21"></div> </div>
+            <div class="row"> <div class="col-sm-1"><input type="checkbox" class="partyCheckbox" value="Libertarische Partij"></div> <div class="col-sm-11" id="Party22"></div> </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>
+<script src="StemWijzer.js"></script>
