@@ -1,35 +1,22 @@
-//alert("test");
-
 var test = 0;
 var Precentage = 0;
 var o = 0;
-var Choices = [];
-var PartyChoices;
-var Party;
+var choices = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
+var partyChoices;
+var party;
 var checkedValue;
 var checkedName;
 
-
-for (let u = 0; u < parties.length; u++) {
-    // console.log(i, subjects[o].parties[i].name)
-    var input = document.createElement("INPUT");
-    var p = document.createElement("P");
-    p.innerHTML = parties[u].name;
-    input.setAttribute("type", "checkbox");
-    document.getElementById("Party"+u).innerHTML = parties[u].name;
-    console.log(input + u + " " + parties[u].name);
-}
-
 function EditText() {
-    document.getElementById("Title").innerHTML = o+1 + ". " + subjects[o].title;
-    document.getElementById("Statement").innerHTML = subjects[o].statement;
-    //console.log(subjects[o].parties);
-    //console.log(Choises);
-    for (let i = 0; i < subjects[o].parties.length; i++) {
-        //console.log(i, subjects[o].parties[i].name)
-        //document.getElementById("Party"+i).innerHTML = subjects[o].parties[i].name + " Mening: " +  subjects[o].parties[i].opinion;
+    document.getElementById('pro').className = 'btn btn-primary';
+    document.getElementById('none').className = 'btn btn-primary';
+    document.getElementById('contra').className = 'btn btn-primary';
+    if (choices[o] !== '') {
+        document.getElementById(choices[o]).className = 'btn btn-success';
     }
-    //GetChosenParty();
+
+    document.getElementById('Title').innerHTML = o+1 + '. ' + subjects[o].title;
+    document.getElementById('Statement').innerHTML = subjects[o].statement;
 }
 
 function GetChosenParty() {
@@ -38,104 +25,111 @@ function GetChosenParty() {
         if(inputElements[i].checked){
             checkedValue = inputElements[i].value;
             checkedName = inputElements[i].name;
-            // console.log(checkedName ,":", checkedValue);
-            // console.log(Precentage + "% mee eens met " + checkedValue);
-            console.log("---test---");
+            console.log(checkedName , ':' , checkedValue);
+            console.log('---test---');
             for (let a = 0; a < 30; a++) {
-                //alert(Choices[a])
                 console.log(a);
                 for (let b = 0; b < subjects[a].parties.length; b++) {
-                    if (subjects[a].parties[b].name == checkedValue) {
-                        //console.log(a + ":" + b + ":" + subjects[a].parties[b].name);
-                            if (Choices[a] == subjects[a].parties[b].position) {
-                                console.log(Choices[a] + ":" + subjects[a].parties[b].position)
+                    if (subjects[a].parties[b].name === checkedValue) {
+                        console.log(choices[a] + ':' + subjects[a].parties[b].position)
+                            if (choices[a] == subjects[a].parties[b].position) {
                                 test++
                             }
                     }
                 }
             }
             Precentage = 100 / subjects.length * test;
-            alert(Precentage + "% mee eens met " + checkedValue);
+            console.log(Precentage + '% mee eens met ' + checkedValue);
+            alert(Precentage + '% mee eens met ' + checkedValue);
             Precentage = 0;
             test = 0;
         }
     }
-    // var inputElements = document.getElementsByClassName('partyCheckbox');
-    // for(var i=0; inputElements[i]; ++i){
-    //     if(inputElements[i].checked){
-    //         checkedValue = inputElements[i].value;
-    //         for (let u = 0; u < subjects[o].parties.length; u++) {
-    //             if (subjects[o].parties[u].name == checkedValue) {
-    //                 console.log(u + " party: ", subjects[o].parties[u].name);
-    //                 if (Choices[i] == subjects[i].parties[u].position) {
-    //                     test++
-    //                     console.log(test);
-    //                 }
-    //                 //console.log("test");
-    //             }
-    //         }
-    //         //console.log(checkedValue);
-    //     }
-    // }
-    // for (let u = 0; u < subjects[o].parties.length; u++) {
-    //     if (subjects[o].parties[u].name == "PVV") {
-    //         //console.log(u + " party: ", subjects[o].parties[u].name);
-    //     }
-    // }
 }
 
-function SaveChosenParty() {
-    Party = [];
+function SaveChosenParty () {
+    party = [];
     var inputElements = document.getElementsByClassName('partyCheckbox');
-    for(var i=0; inputElements[i]; ++i){
+    for(var i = 0; inputElements[i]; ++i){
         if(inputElements[i].checked){
             checkedValue = inputElements[i].value;
-            Party.push(checkedValue);
+            party.push(checkedValue);
         }
     }
-    //Party.push(choice);
-    console.log(Party);
-    alert("test")
+    console.log(party);
+    alert('test')
 }
 
 function NextStatement(choice) {
     if (o < 29) {
+        choices[o] = choice;
+        console.log(choice);
         o++
-        Choices.push(choice);
-        console.log(choice)
         EditText();
-    }
-    else{
-        //window.location.href = "StartPage.html";
-        Choices.push(choice);
+    }else{
+        choices[o] = choice;
         name();
     }
 }
 
 function PreviousStatement() {
-    o--
-    Choices.pop(); 
+    o--;
     if (o >= 0) {
         EditText();
-    }
-    else{
-        window.location.href = "StartPage.html";
+    }else{
+        window.location.href = 'StartPage.html';
     }
 }
 
 function name() {
-    // console.log(Choices.length);
-    // console.log(subjects.length);
-    console.log(Choices)
-    // for (let i = 0; i < 30; i++) {
-    //     if (Choices[i] == subjects[i].parties[0].position) {
-    //         test++
-    //     }
-    // }
-    Precentage = 100 / subjects.length * test;
-    //console.log(Precentage + "% mee eens met " + parties[0].name);
-    //console.log(Precentage + "% mee eens met " + checkedValue);
-    document.getElementById("testDiv").innerHTML = '';
-    document.getElementById("PartyDiv").style.display = "block";
-    // document.getElementById("PrecentageHolder").innerHTML = Precentage + "% mee eens met " + parties[0].name;
+    var partiesResults = [];
+    console.log(choices);
+    console.log(subjects.length);
+
+    for (let i = 0; i < parties.length -1; i++) {
+        console.log('---'+ parties[i].name +'---');
+        for (let a = 0; a < 30; a++) {
+            for (let b = 0; b < subjects[a].parties.length; b++) {
+                if (subjects[a].parties[b].name == parties[i].name) {
+                    if (choices[a] == subjects[a].parties[b].position) {
+                        test++
+                    }
+                }
+            }
+        }
+        Precentage = 100 / subjects.length * test;
+        Precentage = Math.round(Precentage * 100) / 100;
+        console.log(Precentage + '% mee eens met ' + parties[i].name);
+        partiesResults.push([Precentage, parties[i].name]);
+        document.getElementById('Party' + i).innerHTML = Precentage + '% mee eens met <strong>' + parties[i].name + '</strong>';
+        Precentage = 0;
+        test = 0;
+    }
+
+    getHighestNum(partiesResults);
+
+    document.getElementById('QuestionDiv').innerHTML = '';
+    document.getElementById('PartyDiv').style.display = 'block';
+}
+
+function getHighestNum(array){
+    var highestNum;
+    var indexValue;
+    var highestIndexNum;
+    var highestValues = [];
+
+    for (let i = 0; i < 3; i++) {
+        highestNum = 0;
+        for (let index = 0; index < array.length; index++) {
+            var num = array[index][0];
+            if (num >= highestNum) {
+                highestNum = num;
+                indexValue = array[index];
+                highestIndexNum = index;
+            }
+        }
+        array.splice(highestIndexNum,1);
+        highestValues.push(indexValue);
+    }
+    alert('1: ' + highestValues[0][1] + ' / ' + highestValues[0][0] + '% mee eens\n2: ' + highestValues[1][1] + ' / ' + highestValues[1][0] + '% mee eens\n3: ' + highestValues[2][1] + ' / ' + highestValues[2][0] + '% mee eens');
 }
